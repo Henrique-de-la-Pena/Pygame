@@ -1,9 +1,8 @@
 import pygame
-import random
 from os import path
 from config import *
 
-def init_screen(screen):
+def init_screen(window):
     clock = pygame.time.Clock()
 
     #background = pygame.image.load(path.join(IMG_DIR, '')).convert()
@@ -22,8 +21,8 @@ def init_screen(screen):
                 state = GAME
                 running = False
 
-        screen.fill((0, 0, 0))
-        #screen.blit(background, background_rect)
+        window.fill(WHITE)
+        #window.blit(background, background_rect)
 
         pygame.display.flip()
 
