@@ -30,3 +30,43 @@ class Gato(pygame.sprite.Sprite):
             self.rect.bottom = HEIGHT
         if self.rect.top < 0:
             self.rect.top = 0
+
+class Carro(pygame.sprite.Sprite):
+    def __init__(self, assets, i):
+        pygame.sprite.Sprite.__init__(self)
+
+        colour = random.randint(1, 3)
+        if colour == 1:
+            colour = 'r'
+        elif colour == 2:
+            colour = 'y'
+        else:
+            colour = 'b'
+        
+        if i % 2 == 0:
+            direcao = 'd'
+            posix = WIDTH + CAR_WIDTH
+            if i == 0:
+                posiy = 121 + PATH_HEIGHT/2
+            else:
+                posiy = 361 + PATH_HEIGHT/2
+        else:
+            direcao = 'd'
+            posix = 0 - CAR_WIDTH
+            if i == 1:
+                posiy = 121 + PATH_HEIGHT
+            else:
+                posiy = 361 + PATH_HEIGHT
+        
+        self.image = assets[colour+direcao]
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect = self.image.get_rect()
+        self.rect.x = posix
+        self.rect.bottom = posiy
+        self.speedx = 10
+
+    def update(self):
+        self.rect.x += self.speedx
+        
+        if self.rect.left > WIDTH:
+            self.rect.x = 0 - CAR_WIDTH
