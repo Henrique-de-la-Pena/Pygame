@@ -70,3 +70,13 @@ class Carro(pygame.sprite.Sprite):
         
         if self.rect.left > WIDTH:
             self.rect.x = 0 - CAR_WIDTH
+
+class Rato(pygame.sprite.Sprite):
+    def __init__(self, assets):
+        pygame.sprite.Sprite.__init__(self)
+
+        self.image = assets[COIN_IMG]
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect = self.image.get_rect()
+        self.rect.x = random.randint(0, WIDTH - COIN_WIDTH)
+        self.rect.y = random.randint(0, int(HEIGHT/3))
