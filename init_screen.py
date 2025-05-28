@@ -5,8 +5,9 @@ from config import *
 def init_screen(window):
     clock = pygame.time.Clock()
 
-    #background = pygame.image.load(path.join(IMG_DIR, '')).convert()
-    #background_rect = background.get_rect()
+    background = pygame.image.load(path.join(IMG_DIR, 'init.png')).convert()
+    background = pygame.transform.scale(background, (WIDTH, HEIGHT))
+    background_rect = background.get_rect()
 
     running = True
     while running:
@@ -26,7 +27,7 @@ def init_screen(window):
                     running = False
 
         window.fill(WHITE)
-        #window.blit(background, background_rect)
+        window.blit(background, background_rect)
 
         pygame.display.flip()
 
