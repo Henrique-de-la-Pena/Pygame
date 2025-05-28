@@ -1,0 +1,54 @@
+# 🐱 Caça aos Ratos
+Um jogo arcade feito com Pygame onde um gato enfrenta o trânsito em busca de ratos. 🐱🚗🐭
+### 🎮 Autores
+- [Gustavo Volponi Prado]
+- [Henrique De La pena]
+- [Rafael de Barros Antão]
+ 
+
+**Caça aos ratos** é um jogo arcade feito com Python e Pygame. Controle um gato corajoso em sua missão de caçar ratos nas ruas — mas tome cuidado com os carros! Agilidade e atenção são essenciais para sobreviver e marcar muitos pontos!
+
+---
+
+## 🎮 Como Jogar
+
+- **Setas do teclado** para mover o gato:
+  - ← → ↑ ↓
+- **Objetivo:** Coletar todos os **3 ratos** da rodada.
+- **Evite** colisões com os **carros** — cada batida custa uma vida!
+- O jogo termina ao perder todas as **7 vidas**.
+
+---
+
+## 🧩 Regras do Jogo
+
+- +10 pontos por rato coletado.
+- +100 pontos ao capturar todos os 3 ratos.
+- Ao colidir com um carro:
+  - O gato é eliminado temporariamente.
+  - Você perde uma vida.
+  - O jogo continua se ainda houver vidas restantes.
+
+# 🌟 Fases e Dificuldade
+
+O jogo possui um sistema de fases:
+
+- 💯 **Até 390 pontos:** os ratos ficam parados, escondidos nas ruas superiores, e os carros mantêm uma velocidade padrão.
+- 🚀 **A partir de 400 pontos:**
+  - Os ratos passam a se movimentar nas ruas superiores, dificultando acumular pontos.
+  - Os **carros se tornam mais rápidos**, aumentando o desafio.
+
+
+## 📂 Estrutura do Projeto
+
+├── assets/                 # Recursos do jogo (imagens, fontes, sons)
+│   ├── img/               # Imagens como carros, grama, ratos, etc.
+│   ├── fnt/               # Fonte usada no jogo (PressStart2P.ttf)
+├── config.py              # Constantes globais e configurações do jogo
+├── assets.py              # Carregamento de imagens e fontes
+├── sprites.py             # Classes dos personagens (Gato, Carro, Rato)
+├── init_screen.py         # Tela inicial
+├── game_screen.py         # Tela principal do jogo (loop principal)
+├── game_over_screen.py    # Tela de fim de jogo
+├── jogo.py                # Arquivo principal que gerencia os estados
+
