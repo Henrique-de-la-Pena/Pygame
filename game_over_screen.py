@@ -30,7 +30,7 @@ def game_over_screen(window, score, highscore):
                     running = False
                 if event.key == pygame.K_RETURN:
                     #Enter joga de novo
-                    state = GAME
+                    state = INIT
                     running = False
         
         window.fill(WHITE)

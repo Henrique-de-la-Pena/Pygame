@@ -1,3 +1,4 @@
+#Importa biblioteca
 import pygame
 import random
 from config import *
@@ -7,9 +8,12 @@ class Gato(pygame.sprite.Sprite):
     def __init__(self, groups, assets):
         pygame.sprite.Sprite.__init__(self)
 
+        #Imagem
         self.image = assets[CAT_IMG]
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
+
+        #Posição
         self.rect.centerx = WIDTH / 2
         self.rect.bottom = HEIGHT - CAT_HEIGHT
         self.speedx = 0
@@ -18,9 +22,11 @@ class Gato(pygame.sprite.Sprite):
         self.assets = assets
 
     def update(self):
+        #Atualiza posição
         self.rect.x += self.speedx
         self.rect.y += self.speedy
 
+        #Verifica se saiu da tela
         if self.rect.right > WIDTH:
             self.rect.right = WIDTH
         if self.rect.left < 0:
@@ -35,6 +41,7 @@ class Carro(pygame.sprite.Sprite):
     def __init__(self, assets, i, score):
         pygame.sprite.Sprite.__init__(self)
 
+        #Cor aleatoria
         colour = random.randint(1, 3)
         if colour == 1:
             colour = 'r'
@@ -43,6 +50,8 @@ class Carro(pygame.sprite.Sprite):
         else:
             colour = 'b'
         
+        #Verifica qual direção esta indo
+        #Define velocidade aleatoria, quanto mais pontos maior a velocidade
         if i % 2 == 0:
             direcao = 'e'
             posix = WIDTH
@@ -60,6 +69,7 @@ class Carro(pygame.sprite.Sprite):
             else:
                 posiy = 385 + PATH_HEIGHT
         
+        #Define a imagem e velocidade
         self.direcao = direcao
         self.image = assets[colour+direcao]
         self.mask = pygame.mask.from_surface(self.image)
@@ -79,6 +89,8 @@ class Carro(pygame.sprite.Sprite):
         else:
             colour = 'b'
 
+        #Verifica se saiu da tela
+        #se saiu, seleciona outra cor aleatoria
         if self.direcao == 'e':
             if self.rect.right < 0:
                 self.image = assets[colour+self.direcao]
@@ -94,12 +106,14 @@ class Rato(pygame.sprite.Sprite):
     def __init__(self, assets, score):
         pygame.sprite.Sprite.__init__(self)
 
+        #Imagem e posição
         self.image = assets[COIN_IMG]
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x = random.randint(0, WIDTH - COIN_WIDTH)
         self.rect.y = random.randint(0, int(HEIGHT/3))
 
+        #A partir do terceiro nível, eles tem velocidade aleatoria
         if score >= 130*3:
             self.speedx = random.randint(-3, 3)
             self.speedy = random.randint(-3, 3)
@@ -109,6 +123,7 @@ class Rato(pygame.sprite.Sprite):
             self.rect.x += self.speedx
             self.rect.y += self.speedy
 
+        #se chegou em algum dos limites, recebe outra velocidade
         if self.rect.top < 0 or self.rect.bottom > HEIGHT/3 or self.rect.left < 0 or self.rect.right > WIDTH:
             self.speedx = random.randint(-3, 3)
             self.speedy = random.randint(-3, 3)
