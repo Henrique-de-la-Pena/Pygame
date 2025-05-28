@@ -1,7 +1,9 @@
+#Importa bibliotecas
 import pygame
 import os
 from config import *
 
+#keys para o dicionario
 BACKGROUND = 'background'
 STREET_IMG = 'street'
 GRASS_IMG = 'grass'
@@ -23,15 +25,14 @@ TEXT_FONT = 'text_font'
 MIAU_PONTO = 'ponto_snd'
 MIAU_MORTE = 'morte_snd'
 
+#Função para carregar os arquivos
 def load_assets():
     assets = {}
-    #assets[BACKGROUND] = pygame.image.load(os.path.join(IMG_DIR, '')).convert()
+    #Imagens
     assets[STREET_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'rua.png')).convert_alpha()
     assets[STREET_IMG] = pygame.transform.scale(assets[STREET_IMG], (PATH_WIDTH, PATH_HEIGHT))
     assets[GRASS_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'grama.png')).convert_alpha()
-    #assets[GRASS_IMG] = pygame.transform.scale(assets[GRASS_IMG], (PATH_WIDTH, PATH_HEIGHT))
     assets[TREES_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'arvores.png')).convert_alpha()
-    #assets[TREES_IMG] = pygame.transform.scale(assets[TREES_IMG], (PATH_WIDTH, PATH_HEIGHT))
     assets[CAT_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'gato_sentado_frente.png')).convert_alpha()
     assets[CAT_IMG] = pygame.transform.scale(assets[CAT_IMG], (CAT_WIDTH, CAT_HEIGHT))
     assets[CAR_RD] = pygame.image.load(os.path.join(IMG_DIR, 'carro_rd.png')).convert_alpha()
@@ -53,9 +54,11 @@ def load_assets():
     assets[GRAVE_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'lapide.png')).convert_alpha()
     assets[GRAVE_IMG] = pygame.transform.scale(assets[GRAVE_IMG], (GRAVE_WIDTH, GRAVE_HEIGHT))
 
+    #Fontes de texto
     assets[SCORE_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'PressStart2P.ttf'), 28)
     assets[TEXT_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'LuckiestGuy-Regular.ttf'), 28)
     
+    #Sons
     pygame.mixer.music.load(os.path.join(SND_DIR, 'musica.mp3'))
     pygame.mixer.music.set_volume(0.5)
     assets[MIAU_PONTO] = pygame.mixer.Sound(os.path.join(SND_DIR, 'pega_rato.wav'))
