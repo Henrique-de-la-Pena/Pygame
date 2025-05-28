@@ -6,6 +6,7 @@ def game_over_screen(window):
     clock = pygame.time.Clock()
 
     background = pygame.image.load(path.join(IMG_DIR, 'fim_de_jogo.png')).convert()
+    background = pygame.transform.scale(background, (WIDTH, HEIGHT))
     background_rect = background.get_rect()
 
     running = True

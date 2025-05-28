@@ -44,13 +44,13 @@ class Carro(pygame.sprite.Sprite):
             colour = 'b'
         
         if i % 2 == 0:
-            direcao = 'd'
+            direcao = 'e'
             posix = WIDTH
             speed = random.randint(-12 - (score//130), -8 - (score//130))
             if i == 0:
                 posiy = 95 + PATH_HEIGHT
             else:
-                posiy = 335 + PATH_HEIGHT/2
+                posiy = 335 + PATH_HEIGHT
         else:
             direcao = 'd'
             posix = 0 - CAR_WIDTH

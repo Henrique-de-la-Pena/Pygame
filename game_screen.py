@@ -22,13 +22,11 @@ def game_screen(window, score, lives):
     all_sprites.add(player)
     
     for i in range(4):
-        car = Carro(assets, i)
-        all_sprites.add(car)
+        car = Carro(assets, i, score)
         all_cars.add(car)
 
     for i in range(3):
-        coin = Rato(assets)
-        all_sprites.add(coin)
+        coin = Rato(assets, score)
         all_coins.add(coin)
 
     DONE = 0
@@ -70,13 +68,15 @@ def game_screen(window, score, lives):
                         player.speedy = 0
         
         all_sprites.update()
+        all_cars.update(assets)
+        all_coins.update(score)
 
         if gameplay == PLAYING:
 
             hits = pygame.sprite.spritecollide(player, all_coins, True, pygame.sprite.collide_mask)
             if len(hits) > 0:
-                ratos_vivos -= 1
-                score += 10
+                ratos_vivos -= len(hits)
+                score += 10*len(hits)
                 if ratos_vivos == 0:
                     score += 100
                     state = GAME
@@ -94,15 +94,16 @@ def game_screen(window, score, lives):
                 gameplay = DONE
             else:
                 gameplay = PLAYING
+                for car in all_cars:
+                    car.kill()
                 player = Gato(groups, assets)
                 all_sprites.add(player)
-                car = Carro(assets)
-                all_sprites.add(car)
-                all_cars.add(car)
+                for i in range(4):
+                    car = Carro(assets, i, score)
+                    all_cars.add(car)
 
     
-        window.fill(WHITE)
-        #window.blit(assets[BACKGROUND], (0, 0))
+        window.fill(GREEN)
         window.blit(assets[GRASS_IMG], (0, 0))
         window.blit(assets[STREET_IMG], (0, 121))
         window.blit(assets[GRASS_IMG], (0, 240))
@@ -114,6 +115,8 @@ def game_screen(window, score, lives):
         for i in range(lives):
             window.blit(assets[LIFE_IMG], (i*LIFE_WIDTH, HEIGHT - LIFE_HEIGHT))
 
+        all_coins.draw(window)
+        all_cars.draw(window)
         all_sprites.draw(window)
 
         window.blit(assets[TREES_IMG], (0, 120))
