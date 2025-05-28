@@ -37,6 +37,7 @@ def game_screen(window, score, lives):
     keys_down = {}
     ratos_vivos = 3
 
+    pygame.mixer.music.play(loops=-1)
     while gameplay != DONE:
         clock.tick(FPS)
 
@@ -75,6 +76,7 @@ def game_screen(window, score, lives):
 
             hits = pygame.sprite.spritecollide(player, all_coins, True, pygame.sprite.collide_mask)
             if len(hits) > 0:
+                assets[MIAU_PONTO].play()
                 ratos_vivos -= len(hits)
                 score += 10*len(hits)
                 if ratos_vivos == 0:
@@ -84,6 +86,7 @@ def game_screen(window, score, lives):
 
             hits = pygame.sprite.spritecollide(player, all_cars, True, pygame.sprite.collide_mask)
             if len(hits) > 0:
+                assets[MIAU_MORTE].play()
                 player.kill()
                 lives -= 1
                 keys_down = {}
@@ -122,10 +125,10 @@ def game_screen(window, score, lives):
         window.blit(assets[TREES_IMG], (0, 120))
         window.blit(assets[TREES_IMG], (0, 360))
 
-        text_surface = assets[SCORE_FONT].render("{:08d}".format(score), True, YELLOW)
-        text_rect = text_surface.get_rect()
-        text_rect.midtop = (WIDTH / 2,  10)
-        window.blit(text_surface, text_rect)
+        text_score = assets[SCORE_FONT].render("{:08d}".format(score), True, YELLOW)
+        text_score_rect = text_score.get_rect()
+        text_score_rect.midtop = (WIDTH / 2,  10)
+        window.blit(text_score, text_score_rect)
 
         pygame.display.update()
     state = GAME_OVER

@@ -16,7 +16,12 @@ CAT_IMG = 'cat_img'
 COIN_IMG = 'coin_img'
 LIFE_IMG = 'life_img'
 GRAVE_IMG = 'grave_img'
+
 SCORE_FONT = 'score_font'
+TEXT_FONT = 'text_font'
+
+MIAU_PONTO = 'ponto_snd'
+MIAU_MORTE = 'morte_snd'
 
 def load_assets():
     assets = {}
@@ -47,6 +52,13 @@ def load_assets():
     assets[LIFE_IMG] = pygame.transform.scale(assets[LIFE_IMG], (LIFE_WIDTH, LIFE_HEIGHT))
     assets[GRAVE_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'lapide.png')).convert_alpha()
     assets[GRAVE_IMG] = pygame.transform.scale(assets[GRAVE_IMG], (GRAVE_WIDTH, GRAVE_HEIGHT))
+
     assets[SCORE_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'PressStart2P.ttf'), 28)
+    assets[TEXT_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'LuckiestGuy-Regular.ttf'), 28)
+    
+    pygame.mixer.music.load(os.path.join(SND_DIR, 'musica.mp3'))
+    pygame.mixer.music.set_volume(0.5)
+    assets[MIAU_PONTO] = pygame.mixer.Sound(os.path.join(SND_DIR, 'pega_rato.wav'))
+    assets[MIAU_MORTE] = pygame.mixer.Sound(os.path.join(SND_DIR, 'atropelado.mp3'))
 
     return assets

@@ -13,6 +13,7 @@ window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Caça Rato')
 score = 0
 lives = 7
+highscore = 0
 
 state = INIT
 while state != QUIT:
@@ -26,7 +27,9 @@ while state != QUIT:
     elif state == INFO:
         state = info_screen(window)
     elif state == GAME_OVER:
-        state = game_over_screen(window)
+        if score > highscore:
+            highscore = score
+        state = game_over_screen(window, score, highscore)
         score = 0
         lives = 7
     else:
