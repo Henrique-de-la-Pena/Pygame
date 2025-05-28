@@ -29,6 +29,7 @@ BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
 
 INIT = 0
-GAME = 1
-GAME_OVER = 2
-QUIT = 3
+INFO = 1
+GAME = 2
+GAME_OVER = 3
+QUIT = 4

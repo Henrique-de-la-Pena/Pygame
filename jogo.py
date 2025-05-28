@@ -2,6 +2,7 @@ import pygame
 import random
 from config import *
 from init_screen import init_screen
+from info_screen import info_screen
 from game_screen import game_screen
 from game_over_screen import game_over_screen
 
@@ -22,8 +23,12 @@ while state != QUIT:
         state = gameplayed[0]
         score = gameplayed[1]
         lives = gameplayed[2]
+    elif state == INFO:
+        state = info_screen(window)
     elif state == GAME_OVER:
         state = game_over_screen(window)
+        score = 0
+        lives = 7
     else:
         state = QUIT
 

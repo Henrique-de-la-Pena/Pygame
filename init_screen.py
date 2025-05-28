@@ -17,9 +17,13 @@ def init_screen(window):
                 state = QUIT
                 running = False
             
-            if event.type == pygame.KEYUP:
-                state = GAME
-                running = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    state = GAME
+                    running = False
+                if event.key == pygame.K_SPACE:
+                    state = INFO
+                    running = False
 
         window.fill(WHITE)
         #window.blit(background, background_rect)

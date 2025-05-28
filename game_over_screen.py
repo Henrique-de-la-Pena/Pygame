@@ -13,9 +13,16 @@ def game_over_screen(window):
         clock.tick(FPS)
 
         for event in pygame.event.get():
-            if event.type == pygame.QUIT or event.type == pygame.KEYDOWN:
+            if event.type == pygame.QUIT:
                 state = QUIT
                 running = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    state = QUIT
+                    running = False
+                if event.key == pygame.K_RETURN:
+                    state = GAME
+                    running = False
         
         window.fill(WHITE)
         #window.blit(background, background_rect)
